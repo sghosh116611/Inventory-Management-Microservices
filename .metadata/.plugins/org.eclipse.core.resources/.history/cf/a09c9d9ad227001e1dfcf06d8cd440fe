@@ -1,0 +1,10 @@
+package com.personalproject.productservice.dto;
+
+import java.math.BigDecimal;
+
+public class ProducResponse {
+	private String name;
+	private String description;
+	private BigDecimal price;
+
+}

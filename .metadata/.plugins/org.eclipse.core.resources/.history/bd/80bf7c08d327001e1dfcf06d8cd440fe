@@ -1,0 +1,39 @@
+package com.personalproject.productservice.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.personalproject.productservice.dto.ProducResponse;
+import com.personalproject.productservice.dto.ProductRequest;
+import com.personalproject.productservice.model.Product;
+import com.personalproject.productservice.model.Product.ProductBuilder;
+import com.personalproject.productservice.repository.ProductServiceRepository;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductServiceRepository productServiceRepository;
+
+	public void createProduct(ProductRequest productRequest) {
+		Product product = Product.builder()
+                .name(productRequest.getName())
+                .description(productRequest.getDescription())
+                .price(productRequest.getPrice())
+                .build();
+
+		productServiceRepository.save(product);
+	}
+	
+	public List<ProducResponse> getProduct(){
+		List<Product> product = productServiceRepository.findAll();
+		
+		return product.stream().map(p -> mapToProductResponse(p)).toList();
+	}
+
+	private ProducResponse mapToProductResponse(Product p) {
+	}
+}
+

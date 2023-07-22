@@ -1,0 +1,5 @@
+package com.personalproject.productservice.dto;
+
+public class ProducResponse {
+
+}

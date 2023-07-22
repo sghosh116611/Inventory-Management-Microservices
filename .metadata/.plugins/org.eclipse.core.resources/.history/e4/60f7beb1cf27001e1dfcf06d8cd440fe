@@ -1,0 +1,27 @@
+package com.personalproject.productservice.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.personalproject.productservice.dto.ProductRequest;
+import com.personalproject.productservice.model.Product;
+import com.personalproject.productservice.model.Product.ProductBuilder;
+import com.personalproject.productservice.repository.ProductServiceRepository;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductServiceRepository productServiceRepository;
+
+	public void createProduct(ProductRequest productRequest) {
+		Product product = Product.builder()
+                .name(productRequest.getName())
+                .description(productRequest.getDescription())
+                .price(productRequest.getPrice())
+                .build();
+
+        productRepository.save(product);
+	}
+
+}

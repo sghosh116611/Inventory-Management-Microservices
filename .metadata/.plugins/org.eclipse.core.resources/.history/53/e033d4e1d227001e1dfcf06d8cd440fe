@@ -1,0 +1,17 @@
+package com.personalproject.productservice.dto;
+
+import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProducResponse {
+	private String name;
+	private String description;
+	private BigDecimal price;
+
+}

@@ -1,0 +1,5 @@
+package com.personalproject.productservice.model;
+
+public class Product {
+
+}
