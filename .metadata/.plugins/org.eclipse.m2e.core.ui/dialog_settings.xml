@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\projects\Online Shopping\inventory-service"/>
+			<item value="D:\projects\Online Shopping\order-service"/>
 			<item value="D:\projects\Online Shopping\product-service"/>
 		</list>
 		<list key="projectNameTemplate">
