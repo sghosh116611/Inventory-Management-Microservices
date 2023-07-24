@@ -1,4 +1,4 @@
-package com.personalproject.inventoryservice.service.dto;
+package com.personalproject.inventoryservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

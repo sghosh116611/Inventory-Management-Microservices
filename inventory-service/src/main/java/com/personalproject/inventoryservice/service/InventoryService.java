@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.personalproject.inventoryservice.dto.InventoryRequest;
+import com.personalproject.inventoryservice.dto.InventoryResponse;
 import com.personalproject.inventoryservice.model.Inventory;
 import com.personalproject.inventoryservice.repository.InventoryRepository;
-import com.personalproject.inventoryservice.service.dto.InventoryRequest;
-import com.personalproject.inventoryservice.service.dto.InventoryResponse;
 
 import jakarta.transaction.Transactional;
 
