@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class InventoryRequest {
+	private int id;
 	private String skuCode;
 	private int quantity;
 	private BigDecimal price;
