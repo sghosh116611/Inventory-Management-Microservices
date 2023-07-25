@@ -28,7 +28,7 @@ public class OrderService {
 	private OrderRepository orderRepository;
 
 	@Autowired
-	private WebClient webClient;
+	private WebClient.Builder webClientBuilder;
 
 	public int createOrder(OrderRequest orderRequest) {
 
@@ -41,8 +41,8 @@ public class OrderService {
 				.toList();
 
 //		Calling inventory API for checking stock of the skuCodes
-		InventoryResponse[] inventoryResponses = webClient.get()
-				.uri("http://localhost:8082/api/inventory/sku",
+		InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
+				.uri("http://inventory-service/api/inventory/sku",
 						uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
 				.retrieve().bodyToMono(InventoryResponse[].class).block();
 
@@ -56,7 +56,7 @@ public class OrderService {
 			log.info("Order {} created", savedOrder.getId());
 			if (savedOrder.getOrderNumber() != null && !savedOrder.getOrderNumber().equalsIgnoreCase("null")) {
 				log.info("----------- Updating Items ----------");
-				updateInventoryStockForSKU(orderLineItems, webClient);
+				updateInventoryStockForSKU(orderLineItems, webClientBuilder);
 			}
 			return savedOrder.getId();
 		} else {
@@ -71,11 +71,11 @@ public class OrderService {
 				.price(orderLineItem.getPrice()).build();
 	}
 
-	private void updateInventoryStockForSKU(List<OrderLineItem> orderLineItems, WebClient webClient) {
+	private void updateInventoryStockForSKU(List<OrderLineItem> orderLineItems, WebClient.Builder webClientBuilder) {
 		List<InventoryRequest> updateItemslist = orderLineItems.stream()
 				.map(orderLineItem -> mapToInventoryRequest(orderLineItem)).toList();
 		System.out.println(("Update Items list ->"+updateItemslist));
-		webClient.put().uri("http://localhost:8082/api/inventory/sku")
+		webClientBuilder.build().put().uri("http://inventory-service/api/inventory/sku")
 				.body(Mono.just(updateItemslist), InventoryRequest.class).retrieve().bodyToMono(Void.class).block();
 	}
 
